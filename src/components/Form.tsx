@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getOccupationAndState } from "../api";
 import { DropdownMenu } from "./DropdownMenu";
+import { TextField } from "@mui/material";
 
 export const Form = () => {
   const [firstName, setFirstName] = useState<string>("");
@@ -12,13 +13,20 @@ export const Form = () => {
   const [occupation, setOccupation] = useState<string>("");
   const [occupationList, setOccupationList] = useState<Array<string>>([]);
   const [state, setState] = useState<string>("");
-  const [stateList, setStateList] = useState<string>("");
+  const [stateList, setStateList] = useState<
+    Array<{ name: string; abbreviation: string }>
+  >([]);
   const [apiError, setApiError] = useState<boolean>(false);
 
   useEffect(() => {
     console.log("hit");
     getOccupationAndState()
       .then((response) => {
+        console.log(
+          "🚀 ~ file: Form.tsx ~ line 22 ~ .then ~ response",
+          response
+        );
+
         setOccupationList(response.data.occupations);
         setStateList(response.data.states);
       })
@@ -33,50 +41,24 @@ export const Form = () => {
 
   const handleChange = (e: any) => {
     e.preventDefault();
+    console.log("hit");
     // setFirstName(e.target.value);
   };
 
   return (
     <>
-      <DropdownMenu arrayOfStrings={occupationList} selectLabel={"select"} />
       <Link to="/">home</Link>
-      <form>
-        <label>
-          First Name{" "}
-          <input type="text" value={firstName} onChange={handleChange}></input>
-        </label>
-        <label>
-          Last Name{" "}
-          <input type="text" value={lastName} onChange={handleChange}></input>
-        </label>
-        <label>
-          Email{" "}
-          <input type="text" value={email} onChange={handleChange}></input>
-        </label>
-        <label>
-          Password{" "}
-          <input
-            type="password"
-            value={password}
-            onChange={handleChange}
-          ></input>
-        </label>
-        <label>
-          Confirm Password{" "}
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={handleChange}
-          ></input>
-        </label>
-        <label>
-          Occupation{" "}
-          <input type="text" value={occupation} onChange={handleChange}></input>
-        </label>
-        <label>
-          State{" "}
-          <input type="text" value={state} onChange={handleChange}></input>
-        </label>
+      <form style={{ display: "flex", flexDirection: "column" }}>
+        <TextField placeholder="First Name" onChange={handleChange} />
+        <TextField placeholder="Last Name" onChange={handleChange} />
+        <TextField placeholder="Email" onChange={handleChange} />
+        <TextField placeholder="Password" onChange={handleChange} />
+        <TextField placeholder="Confirm Password" onChange={handleChange} />
+        <DropdownMenu
+          arrayOfElements={occupationList}
+          selectLabel={"Occupation"}
+        />
+        <DropdownMenu arrayOfElements={stateList} selectLabel={"State"} />
       </form>
     </>
   );
