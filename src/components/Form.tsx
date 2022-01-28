@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { getOccupationAndState } from "../api";
 import { DropdownMenu } from "./DropdownMenu";
 import { TextField } from "@mui/material";
+import { Test } from "./GraphQL";
 
 export const Form = () => {
   const [firstName, setFirstName] = useState<string>("");
@@ -19,13 +20,12 @@ export const Form = () => {
   const [apiError, setApiError] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log("hit");
     getOccupationAndState()
       .then((response) => {
-        console.log(
-          "🚀 ~ file: Form.tsx ~ line 22 ~ .then ~ response",
-          response
-        );
+        // console.log(
+        //   "🚀 ~ file: Form.tsx ~ line 22 ~ .then ~ response",
+        //   response
+        // );
 
         setOccupationList(response.data.occupations);
         setStateList(response.data.states);
@@ -35,18 +35,15 @@ export const Form = () => {
       });
   }, []);
 
-  useEffect(() => {
-    console.log("first name", firstName);
-  }, [firstName]);
-
   const handleChange = (e: any) => {
     e.preventDefault();
-    console.log("hit");
+    // console.log("hit");
     // setFirstName(e.target.value);
   };
 
   return (
     <>
+      <Test />
       <Link to="/">home</Link>
       <form style={{ display: "flex", flexDirection: "column" }}>
         <TextField placeholder="First Name" onChange={handleChange} />
