@@ -32,9 +32,7 @@ export const Test = () => {
             : [{ label: "loading", abra: "loading" }]
         }
         sx={{ width: 300 }}
-        renderInput={(params) => (
-          <TextField {...params} label="State" variant="standard" />
-        )}
+        renderInput={(params) => <TextField {...params} label="State" />}
         renderOption={(props, option: any) => (
           <Box
             component="li"

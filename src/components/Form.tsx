@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { TextField } from "@mui/material";
+import { TextField, Box } from "@mui/material";
 import { Test } from "./GraphQL";
 
 // TODO: The state management here is really messy and kind of a lot.
@@ -23,14 +23,19 @@ export const Form = () => {
 
   return (
     <>
-      <Test />
       <Link to="/">home</Link>
       <form style={{ display: "flex", flexDirection: "column" }}>
-        <TextField placeholder="First Name" onChange={handleChange} />
-        <TextField placeholder="Last Name" onChange={handleChange} />
-        <TextField placeholder="Email" onChange={handleChange} />
-        <TextField placeholder="Password" onChange={handleChange} />
-        <TextField placeholder="Confirm Password" onChange={handleChange} />
+        <Box style={{ display: "flex" }}>
+          <TextField placeholder="First Name" onChange={handleChange} />
+          <TextField placeholder="Last Name" onChange={handleChange} />
+        </Box>
+        <Box>
+          <TextField placeholder="Email" onChange={handleChange} />
+        </Box>
+        <Box>
+          <TextField placeholder="Password" onChange={handleChange} />
+        </Box>
+        <Test />
       </form>
     </>
   );
