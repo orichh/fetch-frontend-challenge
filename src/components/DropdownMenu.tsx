@@ -2,9 +2,7 @@ import React from "react";
 import { Autocomplete, TextField } from "@mui/material";
 
 type DropdownProps = {
-  arrayOfElements:
-    | Array<string>
-    | Array<{ name: string; abbreviation: string }>;
+  arrayOfElements: Array<string> | Array<{ label: string; abra: string }>;
   selectLabel: string;
 };
 

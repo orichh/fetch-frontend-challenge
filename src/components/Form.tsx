@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { getOccupationAndState } from "../api";
 import { DropdownMenu } from "./DropdownMenu";
 import { TextField } from "@mui/material";
-import { Test } from "./GraphQL";
+import { Test, getData } from "./GraphQL";
 
 export const Form = () => {
   const [firstName, setFirstName] = useState<string>("");
@@ -18,6 +18,7 @@ export const Form = () => {
     Array<{ name: string; abbreviation: string }>
   >([]);
   const [apiError, setApiError] = useState<boolean>(false);
+  const [graphqlData, setGraphqlData] = useState();
 
   useEffect(() => {
     getOccupationAndState()
@@ -55,7 +56,7 @@ export const Form = () => {
           arrayOfElements={occupationList}
           selectLabel={"Occupation"}
         />
-        <DropdownMenu arrayOfElements={stateList} selectLabel={"State"} />
+        {/* <DropdownMenu arrayOfElements={graphqlData} selectLabel={"State"} /> */}
       </form>
     </>
   );

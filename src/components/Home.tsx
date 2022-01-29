@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 
-export const Home = () => {
+export const Home = (props: any) => {
+  console.log("🚀 ~ file: Home.tsx ~ line 4 ~ Home ~ props", props);
+
   return (
     <div>
       welcome
