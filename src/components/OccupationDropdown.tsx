@@ -40,14 +40,15 @@ export const OccupationDropdown = ({
         autoHighlight
         id="auto-highlight"
         options={occupationsData}
-        sx={{ width: 300 }}
+        sx={{ display: "flex", flex: "5", margin: "3%", minWidth: "157px" }}
+        fullWidth
         renderInput={(params) => (
           <TextField {...params} label="Occupation" required />
         )}
         renderOption={(props, option: any) => (
           <Box
             component="li"
-            sx={{ "& > img": { mr: 2, flexShrink: 0 }, flex: 5 }}
+            sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
             {...props}
             value={option.value}
           >

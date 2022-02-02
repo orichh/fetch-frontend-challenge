@@ -23,7 +23,8 @@ export const StateDropdown = ({
         autoHighlight
         id="auto-highlight"
         options={states ? states : [{ label: "loading", value: "loading" }]}
-        sx={{ width: 300 }}
+        fullWidth
+        sx={{ display: "flex", flex: "5", margin: "3%", minWidth: "157px" }}
         renderInput={(params) => (
           <TextField {...params} label="State" required />
         )}
