@@ -1,16 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Box, Checkbox, FormGroup } from "@mui/material";
-import {
-  GenericErrorMessage,
-  OccupationDropdown,
-  StateDropdown,
-  Loading,
-  FirstNameField,
-  LastNameField,
-  EmailField,
-  PasswordField,
-} from "../components";
+import { Box, Checkbox, FormGroup, TextField } from "@mui/material";
+import { StateDropdown } from "./StateDropdown";
+import { OccupationDropdown } from "./OccupationDropdown";
+import { GenericErrorMessage, Loading } from "../components";
 import { useQuery, gql } from "@apollo/client";
 import {
   SubmitButton,
@@ -20,7 +13,7 @@ import {
   DropdownWrapper,
   NameFieldWrapper,
   SignUpWrapper,
-} from "./SignUp.css";
+} from "./styles.css";
 
 const query = gql`
   query Form {
@@ -109,5 +102,65 @@ export const SignUp = () => {
         </>
       )}
     </>
+  );
+};
+
+const PasswordField = ({ handleChange }: any) => {
+  return (
+    <TextField
+      placeholder="Password"
+      onChange={handleChange}
+      label="Password"
+      type="password"
+      required
+      sx={{ display: "flex", margin: "3%", width: "100%" }}
+    />
+  );
+};
+
+const EmailField = ({ handleChange }: any) => {
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        flex: 10,
+        width: "100%",
+      }}
+    >
+      <TextField
+        placeholder="Email"
+        onChange={handleChange}
+        label="Email"
+        sx={{ display: "flex", flex: 10, margin: "3%" }}
+        required
+      />
+    </Box>
+  );
+};
+
+const FirstNameField = ({ handleChange }: any) => {
+  return (
+    <TextField
+      placeholder="First Name"
+      onChange={handleChange}
+      label="First Name"
+      fullWidth
+      sx={{ display: "flex", flex: 5, margin: "3%", minWidth: "159px" }}
+      required
+    />
+  );
+};
+
+const LastNameField = ({ handleChange }: any) => {
+  return (
+    <TextField
+      placeholder="Last Name"
+      onChange={handleChange}
+      label="Last Name"
+      fullWidth
+      sx={{ display: "flex", flex: 5, margin: "3%", minWidth: "159px" }}
+      required
+    />
   );
 };
