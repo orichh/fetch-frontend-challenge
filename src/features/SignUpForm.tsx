@@ -99,16 +99,8 @@ export const SignUpForm = () => {
                 <FirstNameField handleChange={handleChange} />
                 <LastNameField handleChange={handleChange} />
               </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  flex: 10,
-                  width: "-webkit-fill-available",
-                }}
-              >
-                <EmailField handleChange={handleChange} />
-              </Box>
+
+              <EmailField handleChange={handleChange} />
               <Box
                 sx={{
                   display: "flex",
@@ -198,13 +190,22 @@ const LastNameField = ({ handleChange }: any) => {
 
 const EmailField = ({ handleChange }: any) => {
   return (
-    <TextField
-      placeholder="Email"
-      onChange={handleChange}
-      label="Email"
-      sx={{ display: "flex", flex: 10, margin: "3%" }}
-      required
-    />
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        flex: 10,
+        width: "-webkit-fill-available",
+      }}
+    >
+      <TextField
+        placeholder="Email"
+        onChange={handleChange}
+        label="Email"
+        sx={{ display: "flex", flex: 10, margin: "3%" }}
+        required
+      />
+    </Box>
   );
 };
 
