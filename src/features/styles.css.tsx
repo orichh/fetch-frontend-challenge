@@ -48,6 +48,18 @@ export const NameFieldWrapper = styled(Box)({
   flexWrap: "wrap",
 });
 
+export const EmailFieldWrapper = styled(Box)({
+  display: "flex",
+  flexDirection: "row",
+  flex: 10,
+  width: "100%",
+});
+
+export const PasswordFieldWrapper = styled(Box)({
+  display: "flex",
+  width: "100%",
+});
+
 export const SignUpWrapper = styled(Box)({
   component: "form",
   display: "flex",

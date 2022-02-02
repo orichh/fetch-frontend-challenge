@@ -5,7 +5,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { RestLink } from "apollo-link-rest";
 
 const restLink = new RestLink({
-  uri: "https://frontend-take-home.fetchrewards.com/",
+  uri: "https://frontend-take-home.fetchrewards.com",
 });
 
 const client = new ApolloClient({
