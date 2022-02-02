@@ -1,3 +1,5 @@
-import { LastNameField } from "./NameInputFields";
+import { LastNameField, FirstNameField } from "./NameInputFields";
+import { EmailField } from "./EmailField";
+import { PasswordField } from "./PasswordField";
 
-export { LastNameField };
+export { LastNameField, FirstNameField, EmailField, PasswordField };

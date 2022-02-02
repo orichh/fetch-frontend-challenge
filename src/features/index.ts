@@ -1,4 +1,4 @@
-import { SignUpForm } from "./SignUpForm";
+import { SignUp } from "./SignUp";
 import { Home } from "./Home";
 
-export { SignUpForm, Home };
+export { SignUp, Home };

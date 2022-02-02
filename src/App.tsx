@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { SignUpForm, Home } from "./features";
+import { SignUp, Home } from "./features";
 import "./App.css";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { RestLink } from "apollo-link-rest";
@@ -19,7 +19,7 @@ function App() {
       <ApolloProvider client={client}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<SignUpForm />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
       </ApolloProvider>
     </div>
