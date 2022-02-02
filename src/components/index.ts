@@ -1,6 +1,13 @@
 import { GenericErrorMessage } from "./GenericErrorMessage";
-import { OccupationDropdown } from "./OccupationDropdown";
-import { StateDropdown } from "./StateDropdown";
+import { OccupationDropdown } from "./FormElements/OccupationDropdown";
+import { StateDropdown } from "./FormElements/StateDropdown";
 import { Loading } from "./Loading";
+import { LastNameField } from "./FormElements";
 
-export { GenericErrorMessage, OccupationDropdown, StateDropdown, Loading };
+export {
+  GenericErrorMessage,
+  OccupationDropdown,
+  StateDropdown,
+  Loading,
+  LastNameField,
+};
