@@ -28,7 +28,12 @@ export const StateDropdown = ({ setResidentState, states }: StateProps) => {
         sx={{ display: "flex", flex: "5", margin: "3%", minWidth: "159px" }}
         renderInput={(params) => (<TextField {...params} label="State" required />)}
         renderOption={(props, option: any) => (
-          <Box component="li" sx={{ "& > img": { mr: 2, flexShrink: 0 }, flex: 5 }} {...props} value={option.value} >
+          <Box
+            component="li"
+            sx={{ "& > img": { mr: 2, flexShrink: 0 }, flex: 5 }}
+            {...props}
+            value={option.value}
+          >
             {option.label}
           </Box>
         )}
