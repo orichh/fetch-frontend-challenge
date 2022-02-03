@@ -2,6 +2,12 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Wireframes: https://excalidraw.com/#room=e36b9343c4ae052e4117,0xVLnG6gITMQa_Ey7c8v1A
+![image](https://user-images.githubusercontent.com/18966944/151830661-d737e4e7-92f3-49df-9105-24d900cf0782.png)
+
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
