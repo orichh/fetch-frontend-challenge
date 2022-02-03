@@ -86,6 +86,7 @@ const SubmitButton = ({ handleClick }: any) => {
       }}
       variant="outlined"
       onClick={handleClick}
+      id="form-submit-button"
     >
       Sign Up!
     </Button>

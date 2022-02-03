@@ -18,8 +18,8 @@ describe("App.js", () => {
   it("contains the welcome text", async () => {
     await page.goto("http://localhost:3000");
     await page.waitForSelector(".App");
-    const text = await page.$eval(".App", (e: any) => e.textContent);
-    expect(text).toContain("sign up");
+    const homePageText = await page.$eval(".App", (e: any) => e.textContent);
+    expect(homePageText).toContain("sign up");
   });
 
   it("navigates to the sign up page", async () => {
@@ -28,8 +28,9 @@ describe("App.js", () => {
     await page.click("#signup-link");
     await page.waitForSelector("#signup");
 
-    const newtest = await page.$eval(".App", (e: any) => e.textContent);
-    expect(newtest).toContain("Create your free account");
+    const signupPageText = await page.$eval(".App", (e: any) => e.textContent);
+    expect(signupPageText).toContain("Create your free account");
   });
+
   afterAll(() => browser.close());
 });
