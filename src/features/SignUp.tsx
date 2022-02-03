@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useQuery, useMutation, gql } from "@apollo/client";
-import { Checkbox, FormGroup, TextField } from "@mui/material";
+import { Checkbox, FormGroup, TextField, Button } from "@mui/material";
 import { GenericErrorMessage, Loading } from "../components";
 import { StateDropdown } from "./StateDropdown";
 import { OccupationDropdown } from "./OccupationDropdown";
+import { getFormData, addUser } from "../api/index";
+import { useRequest } from "../hooks";
 import {
-  SubmitButton,
   StyledFormControlLabel,
   CheckboxSubmitWrapper,
   FormWrapper,
@@ -17,13 +17,14 @@ import {
   SignUpWrapper,
 } from "./styles.css";
 
-const PasswordField = ({ handleChange }: any) => {
+// Form child components --------------------------------------------------------------------------
+const PasswordField = ({ handleChange, revealPassword }: any) => {
   return (
     <TextField
       placeholder="Password"
       onChange={handleChange}
       label="Password"
-      type="password"
+      type={revealPassword ? "text" : "password"}
       required
       sx={{ display: "flex", margin: "3%", width: "100%" }}
       inputProps={{ maxLength: 50 }}
@@ -72,55 +73,51 @@ const LastNameField = ({ handleChange }: any) => {
   );
 };
 
-// GraphQL Queries & Mutations --------------------------------------------------------------------
-const GET_FORM_DATA_OPTIONS = gql`
-  query Form {
-    data @rest(type: "FormData", path: "/form", method: "GET") {
-      occupations
-      states {
-        label: name
-        value: name
-      }
-    }
-  }
-`;
-
-const ADD_USER = gql`
-  fragment Payload on REST {
-    name: String
-    email: String
-    password: String
-    occupation: String
-    state: String
-  }
-  mutation AddUser($input: Payload!) {
-    user(input: $input) @rest(type: "User", method: "POST", path: "/form") {
-      nawefawefa: a3af3f
-    }
-  }
-`;
+const SubmitButton = ({ handleClick }: any) => {
+  return (
+    <Button
+      sx={{
+        minWidth: "160px",
+        width: "80%",
+        flex: "5",
+        textTransform: "none",
+        fontSize: "20px",
+        fontWeight: "bold",
+      }}
+      variant="outlined"
+      onClick={handleClick}
+    >
+      Sign Up!
+    </Button>
+  );
+};
 
 // SignUp component -------------------------------------------------------------------------------
+interface FormData {
+  label: string;
+  value: string;
+}
 export const SignUp = () => {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [revealPassword, setRevealPassword] = useState<Boolean>(false);
   const [occupation, setOccupation] = useState<string>("");
   const [residentState, setResidentState] = useState<string>("");
-  const { data, loading, error } = useQuery(GET_FORM_DATA_OPTIONS);
-  const [addUser, { data: data1, loading: loading1, error: error1 }] = useMutation(ADD_USER); //prettier-ignore
+  const [states, setStates] = useState<Array<FormData>>([{label: "", value: ""}]); //prettier-ignore
+  const [occupations, setOccupations] = useState<Array<FormData>>([{label: "", value: ""}]); //prettier-ignore
+  const { data, loading, error } = useRequest(getFormData); //prettier-ignore --- custom hook
 
-  if (data1)
-    console.log("🚀 ~ file: SignUp.tsx ~ line 110 ~ SignUp ~ data1", data1);
-  if (loading1)
-    console.log(
-      "🚀 ~ file: SignUp.tsx ~ line 111 ~ SignUp ~ loading1",
-      loading1
-    );
-  if (error1)
-    console.log("🚀 ~ file: SignUp.tsx ~ line 112 ~ SignUp ~ error1", error1);
+  useEffect(() => {
+    // transform data and pass to setStates and setOccupations
+    if (data) {
+      setStates( data.states.map((state: { name: string }) => ({ label: state.name, value: state.name })) ); //prettier-ignore
+      setOccupations( data.occupations.map((job: string) => ({ label: job, value: job })) ); //prettier-ignore
+    }
+  }, [data]);
 
+  // handle user input and update state accordingly
   const handleChange = (event: any) => {
     event.preventDefault();
     const field = event.target.placeholder;
@@ -131,14 +128,20 @@ export const SignUp = () => {
     if (field === "Password") setPassword(fieldValue);
   };
 
+  // handle user submitting form
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    console.log("first name", firstName);
-    console.log("last name", lastName);
-    console.log("email", email);
-    console.log("password", password);
-    console.log("first name", occupation);
-    console.log("first name", residentState);
+
+    // validate all entries have at least one character
+    const isValid = [
+      firstName,
+      lastName,
+      email,
+      password,
+      occupation,
+      residentState,
+    ].every((input) => input.length > 0);
+
     const payload = {
       name: firstName + " " + lastName,
       email: email,
@@ -146,7 +149,18 @@ export const SignUp = () => {
       occupation: occupation,
       state: residentState,
     };
-    addUser({ variables: { input: payload } });
+
+    if (isValid) {
+      addUser(payload)
+        .then((response) => {
+          alert("Account created!");
+        })
+        .catch((error) => {
+          alert("Sorry, there was an error...");
+        });
+    } else {
+      alert("Please fill out each field");
+    }
   };
 
   return (
@@ -159,7 +173,7 @@ export const SignUp = () => {
       ) : (
         <>
           <SignUpWrapper>
-            <h1>Sign up with a free account.</h1>
+            <h1>Create your free account</h1>
             <FormWrapper>
               <NameFieldWrapper>
                 <FirstNameField handleChange={handleChange} />
@@ -172,26 +186,32 @@ export const SignUp = () => {
               <DropdownWrapper>
                 <StateDropdown
                   setResidentState={setResidentState}
-                  states={data.data.states}
+                  // states={data.data.states}
+                  states={states}
                 />
                 <OccupationDropdown
                   setOccupation={setOccupation}
-                  occupations={data.data.occupations}
+                  occupations={occupations}
                 />
               </DropdownWrapper>
               <PasswordFieldWrapper>
-                <PasswordField handleChange={handleChange} />
+                <PasswordField
+                  handleChange={handleChange}
+                  revealPassword={revealPassword}
+                />
               </PasswordFieldWrapper>
               <CheckboxSubmitWrapper>
                 <FormGroup>
                   <StyledFormControlLabel
-                    control={<Checkbox defaultChecked />}
+                    control={
+                      <Checkbox
+                        onChange={() => setRevealPassword(!revealPassword)}
+                      />
+                    }
                     label="Show password"
                   />
                 </FormGroup>
-                <SubmitButton onClick={handleSubmit}>
-                  Create my account!
-                </SubmitButton>
+                <SubmitButton handleClick={handleSubmit} />
               </CheckboxSubmitWrapper>
             </FormWrapper>
           </SignUpWrapper>
