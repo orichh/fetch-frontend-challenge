@@ -28,7 +28,12 @@ export const OccupationDropdown = ({ setOccupation, occupations }: OccupationPro
         options={occupations}
         renderInput={(params) => (<TextField {...params} label="Occupation" required />)}
         renderOption={(props, option: any) => (
-          <Box component="li" sx={{ "& > img": { mr: 2, flexShrink: 0 } }} {...props} value={option.value}>
+          <Box
+            component="li"
+            sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
+            {...props}
+            value={option.value}
+          >
             {option.label}
           </Box>
         )}
