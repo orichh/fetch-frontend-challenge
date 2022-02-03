@@ -1,12 +1,5 @@
 import { styled } from "@mui/styles";
-import { Button, FormControlLabel, Box } from "@mui/material";
-
-export const SubmitButton = styled(Button)({
-  minWidth: "160px",
-  width: "80%",
-  alignItems: "center",
-  flex: "5",
-});
+import { FormControlLabel, Box } from "@mui/material";
 
 export const StyledFormControlLabel = styled(FormControlLabel)({
   minWidth: "160px",
