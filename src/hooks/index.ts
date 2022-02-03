@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 
+// Returns data, loading, and error, mainly used for showing loading component
 export const useRequest = (getRequest: Function) => {
   const [data, setData] = useState<any>();
   const [loading, setLoading] = useState<Boolean>(false);
