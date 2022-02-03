@@ -110,11 +110,18 @@ export const SignUp = () => {
   const [occupations, setOccupations] = useState<Array<FormData>>([{label: "", value: ""}]); //prettier-ignore
   const { data, loading, error } = useRequest(getFormData); //prettier-ignore --- custom hook
 
+  // transform data and pass to setStates and setOccupations
   useEffect(() => {
-    // transform data and pass to setStates and setOccupations
     if (data) {
-      setStates( data.states.map((state: { name: string }) => ({ label: state.name, value: state.name })) ); //prettier-ignore
-      setOccupations( data.occupations.map((job: string) => ({ label: job, value: job })) ); //prettier-ignore
+      setStates(
+        data.states.map((state: { name: string }) => ({
+          label: state.name,
+          value: state.name,
+        }))
+      );
+      setOccupations(
+        data.occupations.map((job: string) => ({ label: job, value: job }))
+      );
     }
   }, [data]);
 
@@ -175,6 +182,7 @@ export const SignUp = () => {
         <>
           <SignUpWrapper>
             <h1 id="signup">Create your free account</h1>
+
             <FormWrapper>
               <NameFieldWrapper>
                 <FirstNameField handleChange={handleChange} />
@@ -184,10 +192,10 @@ export const SignUp = () => {
               <EmailFieldWrapper>
                 <EmailField handleChange={handleChange} />
               </EmailFieldWrapper>
+
               <DropdownWrapper>
                 <StateDropdown
                   setResidentState={setResidentState}
-                  // states={data.data.states}
                   states={states}
                 />
                 <OccupationDropdown
@@ -195,20 +203,18 @@ export const SignUp = () => {
                   occupations={occupations}
                 />
               </DropdownWrapper>
+
               <PasswordFieldWrapper>
                 <PasswordField
                   handleChange={handleChange}
                   revealPassword={revealPassword}
                 />
               </PasswordFieldWrapper>
+
               <CheckboxSubmitWrapper>
                 <FormGroup>
                   <StyledFormControlLabel
-                    control={
-                      <Checkbox
-                        onChange={() => setRevealPassword(!revealPassword)}
-                      />
-                    }
+                    control={<Checkbox onChange={() => setRevealPassword(!revealPassword)}/>} //prettier-ignore
                     label="Show password"
                   />
                 </FormGroup>
