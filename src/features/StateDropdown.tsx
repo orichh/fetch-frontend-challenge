@@ -22,7 +22,6 @@ export const StateDropdown = ({ setResidentState, states }: StateProps) => {
       <Autocomplete
         autoHighlight
         fullWidth
-        id="auto-highlight"
         onChange={handleChange}
         isOptionEqualToValue={(option, value) => option.value === value.value}
         options={states}

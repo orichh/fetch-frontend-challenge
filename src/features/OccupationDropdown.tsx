@@ -22,7 +22,6 @@ export const OccupationDropdown = ({ setOccupation, occupations }: OccupationPro
       <Autocomplete
         autoHighlight
         fullWidth
-        id="auto-highlight"
         sx={{ display: "flex", flex: "5", margin: "3%", minWidth: "159px" }}
         onChange={handleChange}
         isOptionEqualToValue={(option, value) => option.value === value.value}
