@@ -130,7 +130,6 @@ export const SignUpForm = () => {
 
   // reset form input states after user successfully signs up
   useEffect(() => {
-    console.log("occupation and state", occupation, residentState);
     if (formSubmitted === true) {
       setFirstName("");
       setLastName("");
@@ -141,7 +140,7 @@ export const SignUpForm = () => {
       setRevealPassword(false);
       setFormSubmitted(false);
     }
-  }, [formSubmitted, occupation, residentState]);
+  }, [formSubmitted]);
 
   // handle user input and update state accordingly
   const handleChange = (event: any) => {
