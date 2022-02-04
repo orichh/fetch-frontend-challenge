@@ -35,15 +35,18 @@
 6. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### Running in production mode
-1. Open terminal on local machine
-2. Run `git clone git@github.com:richardhyesungo/fetch-frontend-challenge.git`
-3. Run `cd fetch-frontend-challenge` to move into the repo folder
-4. Run `npm ci` to install dependencies
-5. Run `npm run build`
-6. ???
-7. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Requires node and installing serve via npm
+ - [Other ways of serving the build](https://create-react-app.dev/docs/deployment/)
+2. Open terminal on local machine
+3. Run `git clone git@github.com:richardhyesungo/fetch-frontend-challenge.git`
+4. Run `cd fetch-frontend-challenge` to move into the repo folder
+5. Run `npm ci` to install dependencies
+6. Run `npm run build`
+7. Run `npm install -g serve`
+8. Run `serve -s build` if you have 
+9. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### `npm test`
+### Run jest/puppeteer tests with `npm test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
@@ -52,10 +55,11 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 1. Increase test coverage and add unit testing for functions
 2. Add logs to track traffic and errors
 3. Stronger user input validation - only have empty or not empty validation. Woud have checks allowing only A-Z characters, email and password validation
+4. Highlight input fields that weren't completed or completed incorrectly
+5. More styling and color, better feedback once user is created. Maybe redirect to home page as a logged in user.
 
 ## Application Design Visual
 ![image](https://user-images.githubusercontent.com/18966944/152452278-18b00866-fec1-4b88-80bd-497cf6f73de0.png)
 ## Wireframe:
 ![image](https://user-images.githubusercontent.com/18966944/151830661-d737e4e7-92f3-49df-9105-24d900cf0782.png)
-
 
