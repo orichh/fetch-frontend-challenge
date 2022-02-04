@@ -11,8 +11,9 @@
 2. [**Tech Stack**](#tech-stack)
 3. [**Repo Instructions**](#2-ways-to-run-this-application)
 4. [**Possible Improvements**](#possible-improvements-and-additional-features)
-5. [**Application Design Visual**](#application-design-visual)
-6. [**Wireframe Visual**](#wireframe)
+5. [**Form Interaction Gif**](#form-interaction-gif)
+6. [**Application Design Visual**](#application-design-visual)
+7. [**Wireframe Visual**](#wireframe)
 
 ## Tech Stack:
 1. React via create-react-app
@@ -58,8 +59,11 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 4. Highlight input fields that weren't completed or completed incorrectly
 5. More styling and color, better feedback once user is created. Maybe redirect to home page as a logged in user.
 
+## Form Interaction Gif
+![ezgif com-gif-maker (7)](https://user-images.githubusercontent.com/18966944/152461150-7e4d3396-1692-4b7d-bc65-1aaabaec6512.gif)
+
 ## Application Design Visual
 ![image](https://user-images.githubusercontent.com/18966944/152452278-18b00866-fec1-4b88-80bd-497cf6f73de0.png)
+
 ## Wireframe:
 ![image](https://user-images.githubusercontent.com/18966944/151830661-d737e4e7-92f3-49df-9105-24d900cf0782.png)
-
