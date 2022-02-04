@@ -1,52 +1,61 @@
-# Getting Started with Create React App
+<h1 align="center">Fetch Rewards Coding Exercise - Frontend Software Engineering</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<table align="center">
+  <tr>
+    <td align="center"><a href="https://github.com/richardhyesungo"><img src="https://avatars.githubusercontent.com/u/18966944?v=4" width="100px;" alt=""/><br /><sub><b>Richard O</b></sub></a><br /></td>
+  </tr>
+</table>
 
-Wireframes: https://excalidraw.com/#room=e36b9343c4ae052e4117,0xVLnG6gITMQa_Ey7c8v1A
-![image](https://user-images.githubusercontent.com/18966944/151830661-d737e4e7-92f3-49df-9105-24d900cf0782.png)
+## Overview
+1. Kanban Board: https://github.com/richardhyesungo/fetch-frontend-challenge/projects/1
+2. [**Tech Stack**](#tech-stack)
+3. [**Repo Instructions**](#2-ways-to-run-this-application)
+4. [**Possible Improvements**](#possible-improvements-and-additional-features)
+5. [**Application Design Visual**](#application-design-visual)
+6. [**Wireframe Visual**](#wireframe)
 
+## Tech Stack:
+1. React via create-react-app
+2. JavaScript / TypeScript
+3. Jest / Puppeteer
+4. CSS / Material UI / Flexbox
+5. Axios
+6. Prettier
 
+# 2 Ways to Run This Application:
+1. Development
+2. Production
 
+### Running in development mode
+1. Open terminal on local machine
+2. Run `git clone git@github.com:richardhyesungo/fetch-frontend-challenge.git`
+3. Run `cd fetch-frontend-challenge` to move into the repo folder
+4. Run `npm ci` to install dependencies
+5. run `npm start`
+6. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Running in production mode
+1. Open terminal on local machine
+2. Run `git clone git@github.com:richardhyesungo/fetch-frontend-challenge.git`
+3. Run `cd fetch-frontend-challenge` to move into the repo folder
+4. Run `npm ci` to install dependencies
+5. Run `npm run build`
+6. ???
+7. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Possible Improvements and Additional Features
+1. Increase test coverage and add unit testing for functions
+2. Add logs to track traffic and errors
+3. Stronger user input validation - only have empty or not empty validation. Woud have checks allowing only A-Z characters, email and password validation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Application Design Visual
+![image](https://user-images.githubusercontent.com/18966944/152452278-18b00866-fec1-4b88-80bd-497cf6f73de0.png)
+## Wireframe:
+![image](https://user-images.githubusercontent.com/18966944/151830661-d737e4e7-92f3-49df-9105-24d900cf0782.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
