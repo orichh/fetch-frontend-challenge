@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Checkbox, FormGroup, TextField, Button } from "@mui/material";
 import { GenericErrorMessage, Loading } from "../components";
 import { StateDropdown, OccupationDropdown } from ".";
@@ -193,7 +192,6 @@ export const SignUpForm = () => {
 
   return (
     <>
-      <Link to="/">home</Link>
       {loading ? (
         <Loading />
       ) : error ? (
