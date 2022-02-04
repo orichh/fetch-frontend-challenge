@@ -1,5 +1,3 @@
-import { OccupationDropdown } from "./OccupationDropdown";
-import { StateDropdown } from "./StateDropdown";
-import { SignUpForm } from "./SignUpForm";
+import SignUpForm from "./SignUpForm/index";
 
-export { OccupationDropdown, StateDropdown, SignUpForm };
+export { SignUpForm };

@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react";
-import { Checkbox, FormGroup, TextField, Button } from "@mui/material";
-import { GenericErrorMessage, Loading } from "../components";
-import { StateDropdown, OccupationDropdown } from ".";
-import { getFormData, addUser } from "../api/index";
-import { useRequest } from "../hooks";
+import { Checkbox, FormGroup } from "@mui/material";
+import { getFormData, addUser } from "../../api/index";
+import { useRequest } from "../../hooks";
+import { GenericErrorMessage, Loading } from "../../components";
+import { OccupationDropdown } from "./OccupationDropdown";
+import { StateDropdown } from "./StateDropdown";
+import { PasswordField } from "./PasswordField";
+import { EmailField } from "./EmailField";
+import { FirstNameField } from "./FirstNameField";
+import { LastNameField } from "./LastNameField";
+import { SubmitButton } from "./SubmitButton";
 import {
   StyledFormControlLabel,
   CheckboxSubmitWrapper,
@@ -15,92 +21,12 @@ import {
   SignUpWrapper,
 } from "./styles.css";
 
-// Form child components --------------------------------------------------------------------------
-const PasswordField = ({ handleChange, revealPassword, password }: any) => {
-  return (
-    <TextField
-      placeholder="Password"
-      onChange={handleChange}
-      label="Password"
-      type={revealPassword ? "text" : "password"}
-      required
-      sx={{ display: "flex", margin: "3%", width: "100%" }}
-      inputProps={{ maxLength: 50 }}
-      value={password}
-    />
-  );
-};
-
-const EmailField = ({ handleChange, email }: any) => {
-  return (
-    <TextField
-      placeholder="Email"
-      onChange={handleChange}
-      label="Email"
-      sx={{ display: "flex", flex: 10, margin: "3%" }}
-      inputProps={{ maxLength: 50 }}
-      value={email}
-      required
-    />
-  );
-};
-
-const FirstNameField = ({ handleChange, firstName }: any) => {
-  return (
-    <TextField
-      placeholder="First Name"
-      onChange={handleChange}
-      label="First Name"
-      fullWidth
-      sx={{ display: "flex", flex: 5, margin: "3%", minWidth: "159px" }}
-      inputProps={{ maxLength: 50 }}
-      value={firstName}
-      required
-    />
-  );
-};
-
-const LastNameField = ({ handleChange, lastName }: any) => {
-  return (
-    <TextField
-      placeholder="Last Name"
-      onChange={handleChange}
-      label="Last Name"
-      fullWidth
-      sx={{ display: "flex", flex: 5, margin: "3%", minWidth: "159px" }}
-      inputProps={{ maxLength: 50 }}
-      value={lastName}
-      required
-    />
-  );
-};
-
-const SubmitButton = ({ handleClick }: any) => {
-  return (
-    <Button
-      sx={{
-        minWidth: "160px",
-        width: "80%",
-        flex: "5",
-        textTransform: "none",
-        fontSize: "20px",
-        fontWeight: "bold",
-      }}
-      variant="outlined"
-      onClick={handleClick}
-      id="form-submit-button"
-    >
-      Sign Up!
-    </Button>
-  );
-};
-
-// SignUpForm component -------------------------------------------------------------------------------
 interface FormData {
   label: string;
   value: string;
 }
-export const SignUpForm = () => {
+
+const SignUpForm = () => {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -254,3 +180,5 @@ export const SignUpForm = () => {
     </>
   );
 };
+
+export default SignUpForm;
