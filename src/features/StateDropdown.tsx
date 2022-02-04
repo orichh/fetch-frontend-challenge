@@ -3,10 +3,11 @@ import { Autocomplete, TextField, Box } from "@mui/material";
 type StateProps = {
   setResidentState: Function;
   states: Array<{ label: string; value: string }>;
+  resetDropdown: Boolean;
 };
 
 //prettier-ignore
-export const StateDropdown = ({ setResidentState, states }: StateProps) => {
+export const StateDropdown = ({ setResidentState, states, resetDropdown }: StateProps) => {
 
   const handleChange = (event: any, value: any) => {
     event.preventDefault()
@@ -25,6 +26,7 @@ export const StateDropdown = ({ setResidentState, states }: StateProps) => {
         onChange={handleChange}
         isOptionEqualToValue={(option, value) => option.value === value.value}
         options={states}
+        key={resetDropdown.toString()}
         sx={{ display: "flex", flex: "5", margin: "3%", minWidth: "159px" }}
         renderInput={(params) => (<TextField {...params} label="State" required />)}
         renderOption={(props, option: any) => (

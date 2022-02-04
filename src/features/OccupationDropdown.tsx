@@ -3,10 +3,11 @@ import { Autocomplete, TextField, Box } from "@mui/material";
 interface OccupationProps {
   setOccupation: Function;
   occupations: Array<{ label: string; value: string }>;
+  resetDropdown: Boolean;
 }
 
 //prettier-ignore
-export const OccupationDropdown = ({ setOccupation, occupations }: OccupationProps) => {
+export const OccupationDropdown = ({ setOccupation, occupations, resetDropdown }: OccupationProps) => {
 
   const handleChange = (event: any, value: any) => {
     event.preventDefault()
@@ -26,6 +27,7 @@ export const OccupationDropdown = ({ setOccupation, occupations }: OccupationPro
         onChange={handleChange}
         isOptionEqualToValue={(option, value) => option.value === value.value}
         options={occupations}
+        key={resetDropdown.toString()}
         renderInput={(params) => (<TextField {...params} label="Occupation" required />)}
         renderOption={(props, option: any) => (
           <Box
