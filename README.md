@@ -55,7 +55,7 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 ## Possible Improvements and Additional Features
 1. Increase test coverage and add unit testing for functions
 2. Add logs to track traffic and errors
-3. Stronger user input validation - only have empty or not empty validation. Woud have checks allowing only A-Z characters, email and password validation
+3. Stronger user input validation - only have empty or not empty validation. Would have checks allowing only A-Z characters, email and password validation
 4. Highlight input fields that weren't completed or completed incorrectly
 5. More styling and color, better feedback once user is created. Maybe redirect to home page as a logged in user.
 
