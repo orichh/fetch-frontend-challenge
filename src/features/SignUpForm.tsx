@@ -109,8 +109,8 @@ export const SignUpForm = () => {
   const [residentState, setResidentState] = useState<string>("");
   const [states, setStates] = useState<Array<FormData>>([{label: "", value: ""}]); //prettier-ignore
   const [occupations, setOccupations] = useState<Array<FormData>>([{label: "", value: ""}]); //prettier-ignore
-  const { data, loading, error } = useRequest(getRequest, "form"); //prettier-ignore --- custom hook
   const [formSubmitted, setFormSubmitted] = useState<Boolean>(false);
+  const { data, loading, error } = useRequest(getRequest, "form"); //prettier-ignore --- custom hook
 
   // transform data and pass to setStates and setOccupations
   useEffect(() => {
