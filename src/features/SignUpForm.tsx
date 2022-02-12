@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { Checkbox, FormGroup, TextField, Button } from "@mui/material";
-import { GenericErrorMessage, Loading } from "../components";
-import { StateDropdown, OccupationDropdown } from ".";
-import { getFormData, addUser } from "../api/index";
+import { GenericErrorMessage, Loading, SelectDropdown } from "../components";
+import { getRequest, postRequest } from "../api/index";
 import { useRequest } from "../hooks";
 import {
   StyledFormControlLabel,
@@ -110,7 +109,7 @@ export const SignUpForm = () => {
   const [residentState, setResidentState] = useState<string>("");
   const [states, setStates] = useState<Array<FormData>>([{label: "", value: ""}]); //prettier-ignore
   const [occupations, setOccupations] = useState<Array<FormData>>([{label: "", value: ""}]); //prettier-ignore
-  const { data, loading, error } = useRequest(getFormData); //prettier-ignore --- custom hook
+  const { data, loading, error } = useRequest(getRequest, "form"); //prettier-ignore --- custom hook
   const [formSubmitted, setFormSubmitted] = useState<Boolean>(false);
 
   // transform data and pass to setStates and setOccupations
@@ -176,7 +175,7 @@ export const SignUpForm = () => {
     };
 
     if (isValid) {
-      addUser(payload)
+      postRequest("form", payload)
         .then((response) => {
           alert("Account created!");
           setFormSubmitted(true);
@@ -217,15 +216,17 @@ export const SignUpForm = () => {
               </EmailFieldWrapper>
 
               <DropdownWrapper>
-                <StateDropdown
-                  setResidentState={setResidentState}
-                  states={states}
+                <SelectDropdown
+                  setField={setResidentState}
+                  selectOptions={states}
                   resetDropdown={formSubmitted}
+                  label={"State"}
                 />
-                <OccupationDropdown
-                  setOccupation={setOccupation}
-                  occupations={occupations}
+                <SelectDropdown
+                  setField={setOccupation}
+                  selectOptions={occupations}
                   resetDropdown={formSubmitted}
+                  label={"Occupation"}
                 />
               </DropdownWrapper>
 
