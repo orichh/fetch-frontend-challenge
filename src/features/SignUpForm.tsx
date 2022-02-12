@@ -1,117 +1,39 @@
 import { useState, useEffect } from "react";
-import { Checkbox, FormGroup, TextField, Button } from "@mui/material";
-import { GenericErrorMessage, Loading } from "../components";
-import { StateDropdown, OccupationDropdown } from ".";
-import { getFormData, addUser } from "../api/index";
+import { getRequest, postRequest } from "../api/index";
 import { useRequest } from "../hooks";
+import { Checkbox, FormGroup } from "@mui/material";
+import {
+  GenericErrorMessage,
+  Loading,
+  SelectDropdown,
+  InputField,
+  SubmitButton,
+} from "../components";
 import {
   StyledFormControlLabel,
   CheckboxSubmitWrapper,
   FormWrapper,
-  DropdownWrapper,
-  NameFieldWrapper,
-  EmailFieldWrapper,
   PasswordFieldWrapper,
   SignUpWrapper,
+  MultiFieldWrapper,
 } from "./styles.css";
 
-// Form child components --------------------------------------------------------------------------
-const PasswordField = ({ handleChange, revealPassword, password }: any) => {
-  return (
-    <TextField
-      placeholder="Password"
-      onChange={handleChange}
-      label="Password"
-      type={revealPassword ? "text" : "password"}
-      required
-      sx={{ display: "flex", margin: "3%", width: "100%" }}
-      inputProps={{ maxLength: 50 }}
-      value={password}
-    />
-  );
-};
-
-const EmailField = ({ handleChange, email }: any) => {
-  return (
-    <TextField
-      placeholder="Email"
-      onChange={handleChange}
-      label="Email"
-      sx={{ display: "flex", flex: 10, margin: "3%" }}
-      inputProps={{ maxLength: 50 }}
-      value={email}
-      required
-    />
-  );
-};
-
-const FirstNameField = ({ handleChange, firstName }: any) => {
-  return (
-    <TextField
-      placeholder="First Name"
-      onChange={handleChange}
-      label="First Name"
-      fullWidth
-      sx={{ display: "flex", flex: 5, margin: "3%", minWidth: "159px" }}
-      inputProps={{ maxLength: 50 }}
-      value={firstName}
-      required
-    />
-  );
-};
-
-const LastNameField = ({ handleChange, lastName }: any) => {
-  return (
-    <TextField
-      placeholder="Last Name"
-      onChange={handleChange}
-      label="Last Name"
-      fullWidth
-      sx={{ display: "flex", flex: 5, margin: "3%", minWidth: "159px" }}
-      inputProps={{ maxLength: 50 }}
-      value={lastName}
-      required
-    />
-  );
-};
-
-const SubmitButton = ({ handleClick }: any) => {
-  return (
-    <Button
-      sx={{
-        minWidth: "160px",
-        width: "80%",
-        flex: "5",
-        textTransform: "none",
-        fontSize: "20px",
-        fontWeight: "bold",
-      }}
-      variant="outlined"
-      onClick={handleClick}
-      id="form-submit-button"
-    >
-      Sign Up!
-    </Button>
-  );
-};
-
-// SignUpForm component -------------------------------------------------------------------------------
 interface FormData {
   label: string;
   value: string;
 }
-export const SignUpForm = () => {
+export const SignUpForm = (): JSX.Element => {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [revealPassword, setRevealPassword] = useState<Boolean>(false);
-  const [occupation, setOccupation] = useState<string>("");
-  const [residentState, setResidentState] = useState<string>("");
-  const [states, setStates] = useState<Array<FormData>>([{label: "", value: ""}]); //prettier-ignore
   const [occupations, setOccupations] = useState<Array<FormData>>([{label: "", value: ""}]); //prettier-ignore
-  const { data, loading, error } = useRequest(getFormData); //prettier-ignore --- custom hook
+  const [occupation, setOccupation] = useState<string>("");
+  const [states, setStates] = useState<Array<FormData>>([{label: "", value: ""}]); //prettier-ignore
+  const [residentState, setResidentState] = useState<string>("");
   const [formSubmitted, setFormSubmitted] = useState<Boolean>(false);
+  const { data, loading, error } = useRequest(getRequest, "form"); //prettier-ignore --- custom hook
 
   // transform data and pass to setStates and setOccupations
   useEffect(() => {
@@ -176,7 +98,7 @@ export const SignUpForm = () => {
     };
 
     if (isValid) {
-      addUser(payload)
+      postRequest("form", payload)
         .then((response) => {
           alert("Account created!");
           setFormSubmitted(true);
@@ -201,39 +123,48 @@ export const SignUpForm = () => {
             <h1 id="signup">Create your free account</h1>
 
             <FormWrapper>
-              <NameFieldWrapper>
-                <FirstNameField
+              <MultiFieldWrapper>
+                <InputField
                   handleChange={handleChange}
-                  firstName={firstName}
+                  label="First Name"
+                  value={firstName}
                 />
-                <LastNameField
+                <InputField
                   handleChange={handleChange}
-                  lastName={lastName}
+                  label="Last Name"
+                  value={lastName}
                 />
-              </NameFieldWrapper>
+              </MultiFieldWrapper>
 
-              <EmailFieldWrapper>
-                <EmailField handleChange={handleChange} email={email} />
-              </EmailFieldWrapper>
+              <MultiFieldWrapper>
+                <InputField
+                  handleChange={handleChange}
+                  label="Email"
+                  value={email}
+                />
+              </MultiFieldWrapper>
 
-              <DropdownWrapper>
-                <StateDropdown
-                  setResidentState={setResidentState}
-                  states={states}
+              <MultiFieldWrapper>
+                <SelectDropdown
+                  setField={setResidentState}
+                  selectOptions={states}
                   resetDropdown={formSubmitted}
+                  label={"State"}
                 />
-                <OccupationDropdown
-                  setOccupation={setOccupation}
-                  occupations={occupations}
+                <SelectDropdown
+                  setField={setOccupation}
+                  selectOptions={occupations}
                   resetDropdown={formSubmitted}
+                  label={"Occupation"}
                 />
-              </DropdownWrapper>
+              </MultiFieldWrapper>
 
               <PasswordFieldWrapper>
-                <PasswordField
+                <InputField
                   handleChange={handleChange}
+                  label="Password"
+                  value={password}
                   revealPassword={revealPassword}
-                  password={password}
                 />
               </PasswordFieldWrapper>
 
@@ -245,7 +176,7 @@ export const SignUpForm = () => {
                     key={formSubmitted.toString()}
                   />
                 </FormGroup>
-                <SubmitButton handleClick={handleSubmit} />
+                <SubmitButton handleClick={handleSubmit} label="Sign Up!" />
               </CheckboxSubmitWrapper>
             </FormWrapper>
           </SignUpWrapper>

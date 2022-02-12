@@ -1,20 +1,24 @@
 import { Autocomplete, TextField, Box } from "@mui/material";
 
-type StateProps = {
-  setResidentState: Function;
-  states: Array<{ label: string; value: string }>;
+interface DropdownProps {
+  setField: Function;
+  selectOptions: Array<{ label: string; value: string }>;
   resetDropdown: Boolean;
-};
+  label: string;
+}
 
-//prettier-ignore
-export const StateDropdown = ({ setResidentState, states, resetDropdown }: StateProps) => {
-
+export const SelectDropdown = ({
+  setField,
+  selectOptions,
+  resetDropdown,
+  label,
+}: DropdownProps): JSX.Element => {
   const handleChange = (event: any, value: any) => {
-    event.preventDefault()
+    event.preventDefault();
     if (value === null) {
-      setResidentState("");
+      setField("");
     } else {
-      setResidentState(value.value);
+      setField(value.value);
     }
   };
 
@@ -23,16 +27,18 @@ export const StateDropdown = ({ setResidentState, states, resetDropdown }: State
       <Autocomplete
         autoHighlight
         fullWidth
+        sx={{ display: "flex", flex: "5", margin: "3%", minWidth: "159px" }}
         onChange={handleChange}
         isOptionEqualToValue={(option, value) => option.value === value.value}
-        options={states}
+        options={selectOptions}
         key={resetDropdown.toString()}
-        sx={{ display: "flex", flex: "5", margin: "3%", minWidth: "159px" }}
-        renderInput={(params) => (<TextField {...params} label="State" required />)}
+        renderInput={(params) => (
+          <TextField {...params} label={label} required />
+        )}
         renderOption={(props, option: any) => (
           <Box
             component="li"
-            sx={{ "& > img": { mr: 2, flexShrink: 0 }, flex: 5 }}
+            sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
             {...props}
             value={option.value}
           >
