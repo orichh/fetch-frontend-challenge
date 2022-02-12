@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { getRequest, postRequest } from "../api/index";
+import { useRequest } from "../hooks";
 import { Checkbox, FormGroup } from "@mui/material";
 import {
   GenericErrorMessage,
@@ -7,8 +9,6 @@ import {
   InputField,
   SubmitButton,
 } from "../components";
-import { getRequest, postRequest } from "../api/index";
-import { useRequest } from "../hooks";
 import {
   StyledFormControlLabel,
   CheckboxSubmitWrapper,
