@@ -5,6 +5,7 @@ import {
   Loading,
   SelectDropdown,
   InputField,
+  SubmitButton,
 } from "../components";
 import { getRequest, postRequest } from "../api/index";
 import { useRequest } from "../hooks";
@@ -30,26 +31,6 @@ const PasswordField = ({ handleChange, revealPassword, password }: any) => {
       inputProps={{ maxLength: 50 }}
       value={password}
     />
-  );
-};
-
-const SubmitButton = ({ handleClick }: any) => {
-  return (
-    <Button
-      sx={{
-        minWidth: "160px",
-        width: "80%",
-        flex: "5",
-        textTransform: "none",
-        fontSize: "20px",
-        fontWeight: "bold",
-      }}
-      variant="outlined"
-      onClick={handleClick}
-      id="form-submit-button"
-    >
-      Sign Up!
-    </Button>
   );
 };
 
@@ -211,7 +192,7 @@ export const SignUpForm = () => {
                     key={formSubmitted.toString()}
                   />
                 </FormGroup>
-                <SubmitButton handleClick={handleSubmit} />
+                <SubmitButton handleClick={handleSubmit} label="Sign Up!" />
               </CheckboxSubmitWrapper>
             </FormWrapper>
           </SignUpWrapper>
