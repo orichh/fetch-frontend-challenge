@@ -28,10 +28,10 @@ export const SignUpForm = (): JSX.Element => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [revealPassword, setRevealPassword] = useState<Boolean>(false);
-  const [occupation, setOccupation] = useState<string>("");
-  const [residentState, setResidentState] = useState<string>("");
-  const [states, setStates] = useState<Array<FormData>>([{label: "", value: ""}]); //prettier-ignore
   const [occupations, setOccupations] = useState<Array<FormData>>([{label: "", value: ""}]); //prettier-ignore
+  const [occupation, setOccupation] = useState<string>("");
+  const [states, setStates] = useState<Array<FormData>>([{label: "", value: ""}]); //prettier-ignore
+  const [residentState, setResidentState] = useState<string>("");
   const [formSubmitted, setFormSubmitted] = useState<Boolean>(false);
   const { data, loading, error } = useRequest(getRequest, "form"); //prettier-ignore --- custom hook
 
