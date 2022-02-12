@@ -7,11 +7,14 @@ interface DropdownProps {
   label: string;
 }
 
-//prettier-ignore
-export const SelectDropdown = ({ setField, selectOptions, resetDropdown, label }: DropdownProps) => {
-
+export const SelectDropdown = ({
+  setField,
+  selectOptions,
+  resetDropdown,
+  label,
+}: DropdownProps): JSX.Element => {
   const handleChange = (event: any, value: any) => {
-    event.preventDefault()
+    event.preventDefault();
     if (value === null) {
       setField("");
     } else {
@@ -29,7 +32,9 @@ export const SelectDropdown = ({ setField, selectOptions, resetDropdown, label }
         isOptionEqualToValue={(option, value) => option.value === value.value}
         options={selectOptions}
         key={resetDropdown.toString()}
-        renderInput={(params) => (<TextField {...params} label={label} required />)}
+        renderInput={(params) => (
+          <TextField {...params} label={label} required />
+        )}
         renderOption={(props, option: any) => (
           <Box
             component="li"
