@@ -1,17 +1,20 @@
 import { useState, useEffect } from "react";
 import { Checkbox, FormGroup, TextField, Button } from "@mui/material";
-import { GenericErrorMessage, Loading, SelectDropdown } from "../components";
+import {
+  GenericErrorMessage,
+  Loading,
+  SelectDropdown,
+  InputField,
+} from "../components";
 import { getRequest, postRequest } from "../api/index";
 import { useRequest } from "../hooks";
 import {
   StyledFormControlLabel,
   CheckboxSubmitWrapper,
   FormWrapper,
-  DropdownWrapper,
-  NameFieldWrapper,
-  EmailFieldWrapper,
   PasswordFieldWrapper,
   SignUpWrapper,
+  MultiFieldWrapper,
 } from "./styles.css";
 
 // Form child components --------------------------------------------------------------------------
@@ -26,50 +29,6 @@ const PasswordField = ({ handleChange, revealPassword, password }: any) => {
       sx={{ display: "flex", margin: "3%", width: "100%" }}
       inputProps={{ maxLength: 50 }}
       value={password}
-    />
-  );
-};
-
-const EmailField = ({ handleChange, email }: any) => {
-  return (
-    <TextField
-      placeholder="Email"
-      onChange={handleChange}
-      label="Email"
-      sx={{ display: "flex", flex: 10, margin: "3%" }}
-      inputProps={{ maxLength: 50 }}
-      value={email}
-      required
-    />
-  );
-};
-
-const FirstNameField = ({ handleChange, firstName }: any) => {
-  return (
-    <TextField
-      placeholder="First Name"
-      onChange={handleChange}
-      label="First Name"
-      fullWidth
-      sx={{ display: "flex", flex: 5, margin: "3%", minWidth: "159px" }}
-      inputProps={{ maxLength: 50 }}
-      value={firstName}
-      required
-    />
-  );
-};
-
-const LastNameField = ({ handleChange, lastName }: any) => {
-  return (
-    <TextField
-      placeholder="Last Name"
-      onChange={handleChange}
-      label="Last Name"
-      fullWidth
-      sx={{ display: "flex", flex: 5, margin: "3%", minWidth: "159px" }}
-      inputProps={{ maxLength: 50 }}
-      value={lastName}
-      required
     />
   );
 };
@@ -200,22 +159,28 @@ export const SignUpForm = () => {
             <h1 id="signup">Create your free account</h1>
 
             <FormWrapper>
-              <NameFieldWrapper>
-                <FirstNameField
+              <MultiFieldWrapper>
+                <InputField
                   handleChange={handleChange}
-                  firstName={firstName}
+                  label="First Name"
+                  value={firstName}
                 />
-                <LastNameField
+                <InputField
                   handleChange={handleChange}
-                  lastName={lastName}
+                  label="Last Name"
+                  value={lastName}
                 />
-              </NameFieldWrapper>
+              </MultiFieldWrapper>
 
-              <EmailFieldWrapper>
-                <EmailField handleChange={handleChange} email={email} />
-              </EmailFieldWrapper>
+              <MultiFieldWrapper>
+                <InputField
+                  handleChange={handleChange}
+                  label="Email"
+                  value={email}
+                />
+              </MultiFieldWrapper>
 
-              <DropdownWrapper>
+              <MultiFieldWrapper>
                 <SelectDropdown
                   setField={setResidentState}
                   selectOptions={states}
@@ -228,7 +193,7 @@ export const SignUpForm = () => {
                   resetDropdown={formSubmitted}
                   label={"Occupation"}
                 />
-              </DropdownWrapper>
+              </MultiFieldWrapper>
 
               <PasswordFieldWrapper>
                 <PasswordField

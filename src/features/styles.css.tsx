@@ -15,6 +15,19 @@ export const CheckboxSubmitWrapper = styled(Box)({
   justifyContent: "center",
 });
 
+export const MultiFieldWrapper = styled(Box)({
+  display: "flex",
+  flexDirection: "row",
+  flex: 10,
+  width: "100%",
+  flexWrap: "wrap",
+});
+
+export const PasswordFieldWrapper = styled(Box)({
+  display: "flex",
+  width: "100%",
+});
+
 export const FormWrapper = styled(Box)({
   component: "form",
   display: "flex",
@@ -23,34 +36,6 @@ export const FormWrapper = styled(Box)({
   flex: 10,
   width: "60vw",
   maxWidth: "800px",
-});
-
-export const DropdownWrapper = styled(Box)({
-  display: "flex",
-  flexDirection: "row",
-  flex: 10,
-  width: "100%",
-  flexWrap: "wrap",
-});
-
-export const NameFieldWrapper = styled(Box)({
-  display: "flex",
-  flexDirection: "row",
-  flex: 10,
-  width: "100%",
-  flexWrap: "wrap",
-});
-
-export const EmailFieldWrapper = styled(Box)({
-  display: "flex",
-  flexDirection: "row",
-  flex: 10,
-  width: "100%",
-});
-
-export const PasswordFieldWrapper = styled(Box)({
-  display: "flex",
-  width: "100%",
 });
 
 export const SignUpWrapper = styled(Box)({
