@@ -18,28 +18,11 @@ import {
   MultiFieldWrapper,
 } from "./styles.css";
 
-// Form child components --------------------------------------------------------------------------
-const PasswordField = ({ handleChange, revealPassword, password }: any) => {
-  return (
-    <TextField
-      placeholder="Password"
-      onChange={handleChange}
-      label="Password"
-      type={revealPassword ? "text" : "password"}
-      required
-      sx={{ display: "flex", margin: "3%", width: "100%" }}
-      inputProps={{ maxLength: 50 }}
-      value={password}
-    />
-  );
-};
-
-// SignUpForm component -------------------------------------------------------------------------------
 interface FormData {
   label: string;
   value: string;
 }
-export const SignUpForm = () => {
+export const SignUpForm = (): JSX.Element => {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -177,10 +160,11 @@ export const SignUpForm = () => {
               </MultiFieldWrapper>
 
               <PasswordFieldWrapper>
-                <PasswordField
+                <InputField
                   handleChange={handleChange}
+                  label="Password"
+                  value={password}
                   revealPassword={revealPassword}
-                  password={password}
                 />
               </PasswordFieldWrapper>
 

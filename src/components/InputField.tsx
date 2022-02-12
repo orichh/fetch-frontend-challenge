@@ -7,19 +7,28 @@ interface InputProps {
   >;
   label: string;
   value: string;
+  revealPassword?: Boolean;
 }
 
 export const InputField = ({
   handleChange,
   label,
   value,
+  revealPassword,
 }: InputProps): JSX.Element => {
   return (
     <TextField
       placeholder={label}
       onChange={handleChange}
       label={label}
-      sx={{ display: "flex", flex: 10, margin: "3%", minWidth: "159px" }}
+      sx={{
+        display: "flex",
+        flex: 10,
+        margin: "3%",
+        minWidth: "159px",
+        width: "100%",
+      }}
+      type={revealPassword ? "text" : "password"}
       inputProps={{ maxLength: 50 }}
       value={value}
       required
