@@ -14,8 +14,7 @@ export const SubmitButton = ({
     <Button
       sx={{
         minWidth: "160px",
-        width: "80%",
-        flex: "5",
+        width: "40%",
         textTransform: "none",
         fontSize: "20px",
         fontWeight: "bold",
