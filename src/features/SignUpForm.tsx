@@ -33,20 +33,28 @@ export const SignUpForm = (): JSX.Element => {
   const [states, setStates] = useState<Array<FormData>>([{label: "", value: ""}]); //prettier-ignore
   const [residentState, setResidentState] = useState<string>("");
   const [formSubmitted, setFormSubmitted] = useState<Boolean>(false);
+  const [apiDataError, setApiDataError] = useState<Boolean>(false);
   const { data, loading, error } = useRequest(getRequest, "form"); //prettier-ignore --- custom hook
 
   // transform data and pass to setStates and setOccupations
   useEffect(() => {
     if (data) {
-      setStates(
-        data.states.map((state: { name: string }) => ({
-          label: state.name,
-          value: state.name,
-        }))
-      );
-      setOccupations(
-        data.occupations.map((job: string) => ({ label: job, value: job }))
-      );
+      try {
+        setStates(
+          data.states.map((state: { name: string }) => ({
+            label: state.name,
+            value: state.name,
+          }))
+        );
+        setOccupations(
+          data.occupations.map((job: string) => ({
+            label: job,
+            value: job,
+          }))
+        );
+      } catch {
+        setApiDataError(true);
+      }
     }
   }, [data]);
 
@@ -115,7 +123,7 @@ export const SignUpForm = (): JSX.Element => {
     <>
       {loading ? (
         <Loading />
-      ) : error ? (
+      ) : error || apiDataError ? (
         <GenericErrorMessage />
       ) : (
         <>
