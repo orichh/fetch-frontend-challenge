@@ -14,7 +14,7 @@ export const InputField = ({
   handleChange,
   label,
   value,
-  revealPassword,
+  revealPassword = true,
 }: InputProps): JSX.Element => {
   return (
     <TextField
